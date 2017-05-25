@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import VueResource from 'vue-resource'
-import header from 'components/header/header'
+import home from 'components/home/home'
 import mine from 'components/mine/mine'
 import find from 'components/find/find'
+import laught from 'components/laught/laught'
 
 Vue.use(Router)
 Vue.use(VueResource)
@@ -12,9 +13,9 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/header',
-      name: 'header',
-      component: header
+      path: '/home',
+      name: 'home',
+      component: home
     },
     {
       path: '/mine',
@@ -25,6 +26,11 @@ export default new Router({
       path: '/find',
       name: 'find',
       component: find
+    },
+    {
+      path: '/laught',
+      name: 'laught',
+      component: laught
     }
   ]
 })
