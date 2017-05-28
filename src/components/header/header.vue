@@ -44,6 +44,7 @@
       .title_more
         width: 40%
         float: right
+        text-align: right
         img
           width: 40px
           height: 40px
