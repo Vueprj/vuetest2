@@ -5,6 +5,9 @@ import home from 'components/home/home'
 import mine from 'components/mine/mine'
 import find from 'components/find/find'
 import laught from 'components/laught/laught'
+import register from 'components/register/register'
+import login from 'components/login/login'
+import usermsg from 'components/usermsg/usermsg'
 
 Vue.use(Router)
 Vue.use(VueResource)
@@ -31,6 +34,21 @@ export default new Router({
       path: '/laught',
       name: 'laught',
       component: laught
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: login
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: register
+    },
+    {
+      path: '/usermsg',
+      name: 'usermsg',
+      component: usermsg
     }
   ]
 })

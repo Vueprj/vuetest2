@@ -2,11 +2,11 @@
   <div class="header">
     <div class="title">
     <span class="title_img">
-      <img src="./6f836836acaf2edda58049238c1001e938019314.jpg" alt="">
+      <img src="./userImg.jpg" alt=" ">
     </span>
       <span class="title_text">{{title}}</span>
       <span class="title_more">
-      <img src="./more.png" alt="">
+      <img src="./more.png" alt="dfefefew">
     </span>
     </div>
   </div>
