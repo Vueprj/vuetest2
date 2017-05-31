@@ -18,6 +18,10 @@
       return {
         title: '主页'
       }
+    },
+    created() {
+      var tle = this.$route.query
+      console.log(tle)
     }
   }
 </script>
@@ -26,15 +30,16 @@
   .header
     .title
       background: #18B4ED
-      line-height: 70px
-      height: 70px
+      line-height: 60px
+      height: 60px
       .title_img
         width: 40%
         padding-left: 10px;
         float: left
+        font-size: 0
         img
-          width: 60px
-          height: 60px
+          width: 50px
+          height: 50px
           vertical-align: middle
           border-radius: 50%
       .title_text
