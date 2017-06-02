@@ -11,6 +11,7 @@
 <script>
   import header from './components/header/header.vue'
   import footer from './components/footer/footer.vue'
+
   export default {
     data() {
       return {

@@ -17,7 +17,7 @@
             <p>用户昵称:</p>
           </div>
           <router-link :to="{name : 'login',query: title } ">
-          <div class="weui-cell__ft" @click="setTitle">{{userName}}</div>
+            <div class="weui-cell__ft" @click="setTitle">{{userName}}</div>
           </router-link>
         </div>
 
@@ -28,7 +28,7 @@
           <div class="weui-cell__bd">
             <p>个性签名:</p>
           </div>
-          <router-link  :to="{name : 'find' }">
+          <router-link :to="{name : 'find' }">
             <div class="weui-cell__ft">{{userData.details}}</div>
           </router-link>
         </div>
@@ -47,6 +47,7 @@
 </template>
 
 <script type="text/javascript">
+  import bus from '../bus.js'
 
   export default {
     props: {
@@ -56,24 +57,31 @@
       return {
         userData: {},
         userName: '你还没有登录',
-        title: '登录'
+        title: '登录',
+        msg: {}
       }
     },
     created() {
-      this.$http.get('http://127.0.0.1/plTest/public/index.php/admin/admin/mine').then((response) => {
-          response = response.body
-          console.log(response)
-          this.userName = response.name
-          this.userData = response
-        }, response => {
-          console.log('获取用户信息失败！')
-        }
-      )
+    },
+    mounted() {
+      bus.$on('usermessage', (text) => {
+        console.log(text)
+      })
     },
     methods: {
       setTitle() {
 //      console.log(1)
-        this.$emit('sendTitle', '登录')
+      },
+      getData() {
+//        this.$http.get('http://127.0.0.1/plTest/public/index.php/admin/admin/mine').then((response) => {
+//            response = response.body
+//            console.log(response)
+//            this.userName = response.name
+//            this.userData = response
+//          }, response => {
+//            console.log('获取用户信息失败！')
+//          }
+//        )
       }
     }
   }
