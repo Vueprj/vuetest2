@@ -17,7 +17,7 @@
             <p>用户昵称:</p>
           </div>
           <router-link :to="{name : 'login',query: title } ">
-            <div class="weui-cell__ft" @click="setTitle">{{userName}}</div>
+            <div class="weui-cell__ft" @click="setTitle">{{ userName }}</div>
           </router-link>
         </div>
 
@@ -29,7 +29,7 @@
             <p>个性签名:</p>
           </div>
           <router-link :to="{name : 'find' }">
-            <div class="weui-cell__ft">{{userData.details}}</div>
+            <div class="weui-cell__ft">{{ userData.details }}</div>
           </router-link>
         </div>
         <div class="weui-cell">
@@ -39,16 +39,22 @@
           <div class="weui-cell__bd">
             <p>用户昵称:</p>
           </div>
-          <div class="weui-cell__ft">{{userName}}</div>
+          <div class="weui-cell__ft">{{userData.adress}}-----{{userData.name}}</div>
         </div>
       </div>
+    </div>
+    <div class="d" >
+      <li>
+        {{ msg }}----{{text}}
+      </li>
+      <li v-if="show">555</li>
+      <button @click="showmsg" style="width:30px; height:30px"></button>
     </div>
   </div>
 </template>
 
 <script type="text/javascript">
   import bus from '../bus.js'
-
   export default {
     props: {
       main: {}
@@ -56,32 +62,59 @@
     data() {
       return {
         userData: {},
-        userName: '你还没有登录',
+        userName: '你还没有有登录',
         title: '登录',
-        msg: {}
+        show: false,
+        text: '',
+        msg: '1'
       }
     },
     created() {
+//      bus.$on('usermessage', (usermsg) => {
+//        this.getData()
+//        console.log(this.msg)
+//        console.log(usermsg.name)
+//        this.msg = usermsg.name
+//        console.log('mine接收到的usermsg')
+//        console.log(this.msg)
+//        console.log('全局的usermsg')
+//        this.getData()
+//      })
     },
     mounted() {
-      bus.$on('usermessage', (text) => {
-        console.log(text)
-      })
+     console.log('mine刚进入的userData')
+      bus.$on('usermessage', this.getData())
+    },
+    computed: {
+      msg: function () {
+        console.log(2)
+      }
+    },
+    watch: {
+      userData: function (val, oldVal) {
+        console.log()
+      }
     },
     methods: {
+      showmsg(msg) {
+        console.log('去修改值')
+        console.log(msg)
+        this.msg = '55555555555555'
+//      console.log(1)
+      },
       setTitle() {
 //      console.log(1)
       },
       getData() {
-//        this.$http.get('http://127.0.0.1/plTest/public/index.php/admin/admin/mine').then((response) => {
-//            response = response.body
-//            console.log(response)
-//            this.userName = response.name
-//            this.userData = response
-//          }, response => {
-//            console.log('获取用户信息失败！')
-//          }
-//        )
+        this.$http.get('http://127.0.0.1/plTest/public/index.php/admin/admin/mine').then((response) => {
+            response = response.body
+            console.log(response)
+            this.userName = response.name
+            this.userData = response
+          }, response => {
+            console.log('获取用户信息失败！')
+          }
+        )
       }
     }
   }

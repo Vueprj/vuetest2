@@ -20,8 +20,6 @@
       }
     },
     created() {
-      var tle = this.$route.query
-      console.log(tle)
     }
   }
 </script>

@@ -22,7 +22,6 @@
         <label v-if="isfalse" style="color: red">你输入的账号或者密码有误，请重新输入...</label>
       </div>
       <a href="javascript:;" @click="check" class="weui-btn weui-btn_primary btn" :usermsg="usermsg">页面主操作 Normal</a>
-      <a href="javascript:;" @click="sendmsg" class="weui-btn weui-btn_primary btn" :usermsg="usermsg">页面主操作 Normal</a>
     </div>
   </div>
 </template>
@@ -43,8 +42,6 @@
 //      console.log(tle)
     },
     methods: {
-      sendmsg() {
-      },
       check() {
 //        console.log(this.user)
 //        console.log(this.password)
@@ -56,6 +53,7 @@
         }).then(response => {
             if (response.body !== 'no') {
               this.usermsg = response.body
+              console.log('login传递的this.usermsg')
               console.log(this.usermsg)
               bus.$emit('usermessage', this.usermsg)
               this.$router.push({name: 'mine'})
