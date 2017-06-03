@@ -1,27 +1,26 @@
 <template>
   <div id="app">
-    <v-header></v-header>
-    <v-footer></v-footer>
+    <!--<v-header></v-header>-->
     <transition name="slide-fade">
       <router-view :main="main"></router-view>
     </transition>
+    <v-footer></v-footer>
   </div>
 </template>
 
 <script>
   import header from './components/header/header.vue'
   import footer from './components/footer/footer.vue'
-
+  import store from './vuex/store'
   export default {
     data() {
       return {
-        main: {},
         fatherTitle: ''
       }
     },
     computed: {
-      fatherSetTitle(data) {
-        console.log(data)
+      main() {
+        return store.state.usermsg
       }
     },
     components: {
@@ -32,8 +31,7 @@
       this.$router.push('/home')
       this.$http.get('http://127.0.0.1/plTest/public/index.php/admin/admin/createParam').then((response) => {
         response = response.body
-        this.main = response
-        console.log(this.main)
+        store.commit('setusermsg', response)
       }, response => {
         alert('请求失败')
       })
@@ -41,6 +39,11 @@
     methods: {
       reciveTitle(data) {
         console.log(data)
+      },
+      change() {
+        console.log(store.state.msg)
+        // this.msg = 'jhahahaha'
+        store.commit('setmsg', '5555')
       }
     }
   }

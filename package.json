@@ -12,6 +12,7 @@
     "lint": "eslint --ext .js,.vue src test/e2e/specs"
   },
   "dependencies": {
+    "muse-ui": "^2.0.3",
     "stylus": "0.52.4",
     "stylus-loader": "^2.5.0",
     "vue": "^2.1.10",
