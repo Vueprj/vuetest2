@@ -70,7 +70,8 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
   .tab
-    position fixed
+    position:fixed
+    bottom:0
     .router-link-active
       border-radius: 10%
       transition: all linear 0.8s

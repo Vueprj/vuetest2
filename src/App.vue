@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <!--<v-header></v-header>-->
-    <transition name="slide-fade">
-      <router-view :main="main"></router-view>
-    </transition>
+    <div class="content">
+      <transition name="slide-fade">
+        <router-view></router-view>
+      </transition>
+    </div>
     <v-footer></v-footer>
   </div>
 </template>
@@ -12,6 +14,7 @@
   import header from './components/header/header.vue'
   import footer from './components/footer/footer.vue'
   import store from './vuex/store'
+
   export default {
     data() {
       return {
@@ -19,8 +22,8 @@
       }
     },
     computed: {
-      main() {
-        return store.state.usermsg
+      jobdata() {
+        return store.state.jobdata
       }
     },
     components: {
@@ -29,12 +32,15 @@
     },
     created() {
       this.$router.push('/home')
-      this.$http.get('http://127.0.0.1/plTest/public/index.php/admin/admin/createParam').then((response) => {
-        response = response.body
-        store.commit('setusermsg', response)
-      }, response => {
-        alert('请求失败')
-      })
+//      this.$ajax.get('http://127.0.0.1/plTest/public/index.php/admin/admin/createParam').then(function (response) {
+//        console.log(response.data)
+//      })
+//      this.$http.get('http://127.0.0.1/plTest/public/index.php/admin/admin/createParam').then((response) => {
+//        response = response.body
+//        store.commit('setusermsg', response)
+//      }, response => {
+//        alert('请求失败')
+//      })
     },
     methods: {
       reciveTitle(data) {
@@ -50,6 +56,9 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  .content
+    margin-bottom 50px
+    height: auto
   .slide-fade-enter-active {
     transition: all .3s ease;
   }

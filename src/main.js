@@ -6,6 +6,9 @@ import router from './router'
 import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
 import store from './vuex/store'
+import axios from 'axios'
+
+Vue.prototype.$ajax = axios
 
 Vue.use(MuseUI)
 
