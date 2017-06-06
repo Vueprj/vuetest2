@@ -1,28 +1,27 @@
 <template>
   <div class="home">
-    <div class="navtab">
+
       <mu-tabs :value="activeTab" @change="handleTabChange">
         <mu-tab value="tab1" @active="findWork" title="找工作"/>
         <mu-tab value="tab2" @active="findHouse" title="找房子"/>
       </mu-tabs>
+    <scroller class="content"
+      :on-refresh="refresh"
+      :on-infinite="infinite">
       <div v-if="activeTab === 'tab1'">
-        <div class="demo-refresh-container">
-          <mu-refresh-control :refreshing="refreshing" :trigger="trigger" @refresh="refresh"/>
-          <mu-list>
-            <template v-for="item in jobmsg">
-              <mu-list-item disableRipple :title="item.company"/>
-              <mu-divider/>
-            </template>
-          </mu-list>
-        </div>
+        <!-- content goes here -->
+        <h1 v-for="item in jobmsg">
+          {{item.job}}
+        </h1>
       </div>
-      <div v-if="activeTab === 'tab2'">
-        <h2>Tab Two</h2>
-        <p>
-          这是第二个 tab
-        </p>
-      </div>
-    </div>
+    </scroller>
+
+  <div v-if="activeTab === 'tab2'">
+    <h2>Tab Two</h2>
+    <p>
+      这是第二个 tab
+    </p>
+  </div>
   </div>
 </template>
 
@@ -52,12 +51,16 @@
       this.trigger = this.$el
     },
     methods: {
-      refresh () {
-        alert(11)
-        this.refreshing = true
-        setTimeout(() => {
-
-        }, 2000)
+      refreshText() {
+        alert(2)
+      },
+      // 上拉刷新数据
+      refresh() {
+//        alert(1)
+      },
+      // 下拉加载数据
+      infinite() {
+//        alert(22)
       },
       findWork() {
       },
@@ -78,8 +81,8 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
   /*.home*/
-    /*.navtab*/
-  .demo-refresh-container{
+  /*.navtab*/
+  .demo-refresh-container {
     width: 100%;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
@@ -87,4 +90,8 @@
     position: relative;
     user-select: none;
   }
+  .home
+    .content
+      position fixed
+      margin-top 48px
 </style>

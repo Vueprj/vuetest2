@@ -7,11 +7,12 @@ import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
 import store from './vuex/store'
 import axios from 'axios'
+import VueScroller from 'vue-scroller'
 
 Vue.prototype.$ajax = axios
 
 Vue.use(MuseUI)
-
+Vue.use(VueScroller)
 /* eslint-disable no-new */
 new Vue({
   router,
