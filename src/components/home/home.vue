@@ -1,29 +1,56 @@
 <template>
   <div class="home">
+    <mu-tabs :value="activeTab" @change="handleTabChange">
+      <mu-tab value="tab1" @active="findWork" title="找工作"/>
 
-      <mu-tabs :value="activeTab" @change="handleTabChange">
-        <mu-tab value="tab1" @active="findWork" title="找工作"/>
-        <mu-tab value="tab2" @active="findHouse" title="找房子"/>
-      </mu-tabs>
+    </mu-tabs>
     <scroller class="content"
-      :on-refresh="refresh"
-      :on-infinite="infinite">
+              height="100%"
+              :on-refresh="refresh"
+              :on-infinite="infinite">
       <div v-if="activeTab === 'tab1'">
         <!-- content goes here -->
-        <h1 v-for="item in jobmsg">
-          {{item.job}}
-        </h1>
+        <div v-for="items in jobmsg">
+          <mu-list v-for="(item, index) in items" :value="index" @change="handleChange">
+            <mu-list-item  toggleNested nestedListClass :open="false">
+              {{item.job}}
+              <mu-list-item :value="index" slot="nested" class="it">
+                <mu-list-item>
+                  <div class="list">
+                    <h2>{{item.company}}</h2>
+                    <p class="money">薪金：{{item.min}} - {{item.max}}</p>
+                    <p class="date">工作地点：{{item.adress}}</p>
+                    <p class="date">发布时间：{{item.date}}</p>
+                  </div>
+                </mu-list-item>
+              </mu-list-item>
+            </mu-list-item>
+          </mu-list>
+        </div>
       </div>
     </scroller>
-
-  <div v-if="activeTab === 'tab2'">
-    <h2>Tab Two</h2>
-    <p>
-      这是第二个 tab
-    </p>
-  </div>
   </div>
 </template>
+<style lang="stylus" rel="stylesheet/stylus">
+  .home
+    .content
+      position fixed
+      margin-top 48px
+      .list
+        position relative
+        h2
+          color orangered
+          font-weight bold
+  .demo-refresh-container {
+    width: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid #d9d9d9;
+    position: relative;
+    user-select: none;
+  }
+
+</style>
 
 <script type="text/javascript">
   import { mapActions } from 'vuex'
@@ -43,24 +70,32 @@
       }
     },
     created() {
-      this.getjob()
-      this.jobdata = store.state.jobdata
     },
     mouted() {
-      console.log(this.jobdata)
       this.trigger = this.$el
     },
     methods: {
+      handleChange (val) {
+        this.value = val
+      },
       refreshText() {
         alert(2)
       },
-      // 上拉刷新数据
-      refresh() {
-//        alert(1)
+      // 下拉刷新数据
+      refresh(done) {
+        console.log('下拉刷新！')
+        setTimeout(() => {
+          this.refreshjob()
+        }, 1500)
+        done()
       },
-      // 下拉加载数据
-      infinite() {
-//        alert(22)
+      // 上拉加载数据
+      infinite(done) {
+        console.log('加载ok！')
+        setTimeout(() => {
+          this.getjob()
+          done()
+        }, 1500)
       },
       findWork() {
       },
@@ -73,25 +108,10 @@
       handleActive () {
       },
       ...mapActions([
-        'getjob'
+        'getjob',
+        'refreshjob'
       ])
     }
   }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
-  /*.home*/
-  /*.navtab*/
-  .demo-refresh-container {
-    width: 100%;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-    border: 1px solid #d9d9d9;
-    position: relative;
-    user-select: none;
-  }
-  .home
-    .content
-      position fixed
-      margin-top 48px
-</style>

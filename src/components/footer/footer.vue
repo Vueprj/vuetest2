@@ -4,19 +4,19 @@
       <div class="weui-tabbar__icon">
         <img :src="home" alt="">
       </div>
-      <p class="weui-tabbar__label tab_p">主页</p>
+      <p class="weui-tabbar__label tab_p">找工作</p>
     </router-link>
     <router-link :to="{name: 'find'}" class="weui-tabbar__item">
       <div class="weui-tabbar__icon tab_p">
         <img :src="find" alt="">
       </div>
-      <p class="weui-tabbar__label tab_p">发现</p>
+      <p class="weui-tabbar__label tab_p">找好房</p>
     </router-link>
     <router-link :to="{name: 'laught'}" class="weui-tabbar__item">
       <div class="weui-tabbar__icon">
         <img :src="laught" alt="">
       </div>
-      <p class="weui-tabbar__label tab_p">笑话</p>
+      <p class="weui-tabbar__label tab_p">推荐</p>
     </router-link>
     <router-link :to="{name: 'mine'}" class="weui-tabbar__item">
       <div class="weui-tabbar__icon">
@@ -48,12 +48,12 @@
         if (this.$route.path !== '/find') {
           this.find = '/static/img/find.png'
         } else {
-          this.find = '/static/img/find.png'
+          this.find = '/static/img/find_s.png'
         }
         if (this.$route.path !== '/laught') {
           this.laught = '/static/img/laught.png'
         } else {
-          this.laught = '/static/img/laught.png'
+          this.laught = '/static/img/laught_s.png'
         }
         if (this.$route.path !== '/mine') {
           this.mine = '/static/img/mine.png'
@@ -70,11 +70,11 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
   .tab
-    position:fixed
-    bottom:0
+    position: fixed
+    bottom: 0
     .router-link-active
       border-radius: 10%
       transition: all linear 0.8s
       .tab_p
-          color: blue
+        color: blue
 </style>

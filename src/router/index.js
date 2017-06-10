@@ -49,6 +49,7 @@ export default new Router({
       path: '/usermsg',
       name: 'usermsg',
       component: usermsg
-    }
+    },
+    { path: '*', redirect: '/home' }
   ]
 })

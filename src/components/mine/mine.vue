@@ -1,6 +1,6 @@
 <template>
   <div class="mine">
-    <div class="user"></div>
+    <div class="user"><span>我的资料</span></div>
     <div class="messge">
       <div class="userImg">
         <div class="content-img">
@@ -42,13 +42,6 @@
           <div class="weui-cell__ft">{{userData.adress}}-----{{userData.name}}</div>
         </div>
       </div>
-    </div>
-    <div class="d" >
-      <li>
-        {{ msg }}----{{text}}
-      </li>
-      <li v-if="show">555</li>
-      <button @click="showmsg" style="width:30px; height:30px"></button>
     </div>
   </div>
 </template>
@@ -121,6 +114,13 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  .user
+    height 48px
+    background #7e57c2
+    text-align center
+    line-height 48px
+    font-size 18px
+    font-weight bold
   .messge
     .userImg
       padding 20px 40px 10px 40px
